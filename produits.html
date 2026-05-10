@@ -5,6 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VDMS Consulting — Produits</title>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    p.description {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #cbd5e1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      color: #facc15;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: #1e293b;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .high {
+      background: #16a34a;
+    }
+
+    .medium {
+      background: #ca8a04;
+    }
+
+    .low {
+      background: #dc2626;
+    }
+
+    .rules {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+  </style>
 </head>
 <body>
 <header>
@@ -40,7 +185,277 @@
   </div>
 </header>
 <div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+<div class="container">
+    <h1>Système Expert de Pronostics</h1>
+    <p class="description">
+      Application HTML/CSS/JavaScript utilisant un moteur de règles et un facteur de certitude pour analyser des pronostics sportifs et hippiques.
+    </p>
 
+    <div class="grid">
+
+      <div class="card">
+        <h2>Analyse Ligue 1</h2>
+
+        <div class="field">
+          <label>Équipe favorite</label>
+          <input type="text" id="team" placeholder="Ex : PSG">
+        </div>
+
+        <div class="field">
+          <label>Côte du bookmaker</label>
+          <input type="number" id="odds" step="0.01" placeholder="Ex : 1.55">
+        </div>
+
+        <div class="field">
+          <label>Forme récente (%)</label>
+          <input type="number" id="form" min="0" max="100" placeholder="Ex : 78">
+        </div>
+
+        <div class="field">
+          <label>Consensus pronostiqueurs (%)</label>
+          <input type="number" id="experts" min="0" max="100" placeholder="Ex : 85">
+        </div>
+
+        <div class="field">
+          <label>Avantage domicile</label>
+          <select id="homeAdvantage">
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+
+        <button onclick="analyserFootball()">Analyser le match</button>
+
+        <div class="result" id="footballResult">
+          En attente d'analyse...
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Analyse Courses Hippiques</h2>
+
+        <div class="field">
+          <label>Nom du cheval</label>
+          <input type="text" id="horse">
+        </div>
+
+        <div class="field">
+          <label>Côte PMU</label>
+          <input type="number" id="horseOdds" step="0.01">
+        </div>
+
+        <div class="field">
+          <label>Performance récente (%)</label>
+          <input type="number" id="horseForm" min="0" max="100">
+        </div>
+
+        <div class="field">
+          <label>Avis des experts (%)</label>
+          <input type="number" id="horseExperts" min="0" max="100">
+        </div>
+
+        <div class="field">
+          <label>Numéro avantageux</label>
+          <select id="horseNumberAdvantage">
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+
+        <button onclick="analyserCheval()">Analyser le cheval</button>
+
+        <div class="result" id="horseResult">
+          En attente d'analyse...
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card rules">
+      <h2>Moteur de règles du système expert</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Règle</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Côte faible (&lt; 1.80)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Bonne forme (&gt; 70%)</td>
+            <td>+30 certitude</td>
+          </tr>
+          <tr>
+            <td>Consensus élevé (&gt; 75%)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Avantage terrain / numéro</td>
+            <td>+15 certitude</td>
+          </tr>
+          <tr>
+            <td>Côte trop élevée (&gt; 4)</td>
+            <td>-20 certitude</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      Ce système expert fournit une estimation probabiliste basée sur des règles simples et des facteurs de certitude. Il ne garantit aucun gain.
+    </div>
+  </div>
+
+  <script>
+
+    function calculerFacteurCertitude(data) {
+      let score = 0;
+      let explications = [];
+
+      if (data.odds < 1.8) {
+        score += 25;
+        explications.push("✔ Côte faible favorable");
+      }
+
+      if (data.odds > 4) {
+        score -= 20;
+        explications.push("✖ Côte élevée = risque important");
+      }
+
+      if (data.form > 70) {
+        score += 30;
+        explications.push("✔ Excellente forme récente");
+      }
+
+      if (data.form < 40) {
+        score -= 25;
+        explications.push("✖ Mauvaise dynamique récente");
+      }
+
+      if (data.experts > 75) {
+        score += 25;
+        explications.push("✔ Consensus élevé des pronostiqueurs");
+      }
+
+      if (data.experts < 45) {
+        score -= 20;
+        explications.push("✖ Faible confiance des experts");
+      }
+
+      if (data.advantage === 'oui') {
+        score += 15;
+        explications.push("✔ Avantage stratégique détecté");
+      }
+
+      score = Math.max(0, Math.min(score, 100));
+
+      return {
+        score,
+        explications
+      };
+    }
+
+    function niveauConfiance(score) {
+      if(score >= 75) {
+        return {
+          label: 'Forte confiance',
+          className: 'high'
+        };
+      }
+
+      if(score >= 50) {
+        return {
+          label: 'Confiance moyenne',
+          className: 'medium'
+        };
+      }
+
+      return {
+        label: 'Faible confiance',
+        className: 'low'
+      };
+    }
+
+    function analyserFootball() {
+      const team = document.getElementById('team').value;
+      const odds = parseFloat(document.getElementById('odds').value);
+      const form = parseInt(document.getElementById('form').value);
+      const experts = parseInt(document.getElementById('experts').value);
+      const advantage = document.getElementById('homeAdvantage').value;
+
+      const resultat = calculerFacteurCertitude({
+        odds,
+        form,
+        experts,
+        advantage
+      });
+
+      const niveau = niveauConfiance(resultat.score);
+
+      let prediction = 'Match imprévisible';
+
+      if(resultat.score >= 75) {
+        prediction = `${team} possède un profil très favorable pour la victoire.`;
+      } else if(resultat.score >= 50) {
+        prediction = `${team} présente des indicateurs intéressants mais le risque reste modéré.`;
+      } else {
+        prediction = `${team} présente trop d'incertitudes pour un pari sécurisé.`;
+      }
+
+      document.getElementById('footballResult').innerHTML = `
+        <h3>Analyse IA du match</h3>
+        <p><strong>Prédiction :</strong> ${prediction}</p>
+        <p><strong>Facteur de certitude :</strong> ${resultat.score}%</p>
+        <div class="badge ${niveau.className}">${niveau.label}</div>
+        <ul style="margin-top:15px; padding-left:20px;">
+          ${resultat.explications.map(e => `<li>${e}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    function analyserCheval() {
+      const horse = document.getElementById('horse').value;
+      const odds = parseFloat(document.getElementById('horseOdds').value);
+      const form = parseInt(document.getElementById('horseForm').value);
+      const experts = parseInt(document.getElementById('horseExperts').value);
+      const advantage = document.getElementById('horseNumberAdvantage').value;
+
+      const resultat = calculerFacteurCertitude({
+        odds,
+        form,
+        experts,
+        advantage
+      });
+
+      const niveau = niveauConfiance(resultat.score);
+
+      let prediction = 'Course très ouverte';
+
+      if(resultat.score >= 75) {
+        prediction = `${horse} possède un excellent profil statistique pour finir placé.`;
+      } else if(resultat.score >= 50) {
+        prediction = `${horse} peut créer une opportunité intéressante selon la stratégie de jeu.`;
+      } else {
+        prediction = `${horse} semble présenter un risque élevé selon les règles du système expert.`;
+      }
+
+      document.getElementById('horseResult').innerHTML = `
+        <h3>Analyse IA de la course</h3>
+        <p><strong>Prédiction :</strong> ${prediction}</p>
+        <p><strong>Facteur de certitude :</strong> ${resultat.score}%</p>
+        <div class="badge ${niveau.className}">${niveau.label}</div>
+        <ul style="margin-top:15px; padding-left:20px;">
+          ${resultat.explications.map(e => `<li>${e}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+  </script>
 <main>
   <section>
     <h2 data-i18n="nav_products">Produits</h2>
