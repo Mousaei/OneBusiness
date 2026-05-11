@@ -515,6 +515,53 @@
       };
     }
 
+     function calculerFacteurCertitudeCheval(data) {
+      let score = 0;
+      let explications = [];
+
+      if (data.odds < 9.9) {
+        score += 25;
+        explications.push("✔ Côte faible favorable");
+      }
+
+      if (data.odds > 12.2 ) {
+        score -= 20;
+        explications.push("✖ Côte élevée = risque important");
+      }
+
+      if (data.form > 45) {
+        score += 30;
+        explications.push("✔ Excellente forme récente");
+      }
+
+      if (data.form < 40) {
+        score -= 25;
+        explications.push("✖ Mauvaise dynamique récente");
+      }
+
+      if (data.experts > 75) {
+        score += 25;
+        explications.push("✔ Consensus élevé des pronostiqueurs");
+      }
+
+      if (data.experts < 55) {
+        score -= 20;
+        explications.push("✖ Faible confiance des experts");
+      }
+
+      if (data.advantage === 'oui') {
+        score += 15;
+        explications.push("✔ Avantage stratégique détecté");
+      }
+
+      score = Math.max(0, Math.min(score, 100));
+
+      return {
+        score,
+        explications
+      };
+    }
+
     function niveauConfiance(score) {
       if(score >= 75) {
         return {
@@ -580,7 +627,7 @@
       const experts = parseInt(document.getElementById('horseExperts').value);
       const advantage = document.getElementById('horseNumberAdvantage').value;
 
-      const resultat = calculerFacteurCertitude({
+      const resultat = calculerFacteurCertitudeCheval({
         odds,
         form,
         experts,
