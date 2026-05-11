@@ -477,17 +477,17 @@
         explications.push("✔ Côte faible favorable");
       }
 
-      if (data.odds > 4) {
+      if (data.odds > 3) {
         score -= 20;
         explications.push("✖ Côte élevée = risque important");
       }
 
-      if (data.form > 70) {
+      if (data.form > 65) {
         score += 30;
         explications.push("✔ Excellente forme récente");
       }
 
-      if (data.form < 40) {
+      if (data.form < 35) {
         score -= 25;
         explications.push("✖ Mauvaise dynamique récente");
       }
@@ -519,12 +519,12 @@
       let score = 0;
       let explications = [];
 
-      if (data.odds < 9.9) {
+      if (data.odds < 9.98) {
         score += 25;
         explications.push("✔ Côte faible favorable");
       }
 
-      if (data.odds > 12.2 ) {
+      if (data.odds > 12.21 ) {
         score -= 20;
         explications.push("✖ Côte élevée = risque important");
       }
