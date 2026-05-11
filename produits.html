@@ -176,8 +176,7 @@
     <p data-i18n="cart_r2">≥ 20 articles : −50 %</p>
     <a class="btn-outline mt-16" href="panier.html" data-i18n="btn_cart">Voir mon panier</a>
   </div>
-  <section>
-<div>
+ 
   <style>
     * {
       box-sizing: border-box;
@@ -323,7 +322,9 @@
     }
 
   </style>
-<div class="container">
+   <section>
+<div>
+  <div class="container">
     <h1>Système Expert de Pronostics</h1>
     <p class="description">
       Application HTML/CSS/JavaScript utilisant un moteur de règles et un facteur de certitude pour analyser des pronostics sportifs et hippiques.
@@ -388,12 +389,12 @@
         </div>
 
         <div class="field">
-          <label>Avis ou Synthèse des experts (%)</label>
+          <label>Avis et Synthèse des experts (%). Exemple Top 2 sur 15 soit une côté supérieure à 13 divisée par 15 : Côte supérieure à 85 % </label>
           <input type="number" id="horseExperts" min="0" max="100">
         </div>
 
         <div class="field">
-          <label>Pronostic avantageux</label>
+          <label>Pronostic avantageux: Parmis les trois premiers</label>
           <select id="horseNumberAdvantage">
             <option value="oui">Oui</option>
             <option value="non">Non</option>
