@@ -176,7 +176,7 @@
     <p data-i18n="cart_r2">≥ 20 articles : −50 %</p>
     <a class="btn-outline mt-16" href="panier.html" data-i18n="btn_cart">Voir mon panier</a>
   </div>
-
+<div>
   <style>
     * {
       box-sizing: border-box;
@@ -428,7 +428,7 @@
             <td>+30 certitude</td>
           </tr>
           <tr>
-            <td>Consensus élevé (&gt; 75%)</td>
+            <td>Consensus élevé (&gt; 65%)</td>
             <td>+25 certitude</td>
           </tr>
           <tr>
@@ -447,7 +447,7 @@
       Ce système expert fournit une estimation probabiliste basée sur des règles simples et des facteurs de certitude. Il ne garantit aucun gain.
     </div>
   </div>
-  
+</div> 
 </main>
     
 <footer class="footer">
@@ -494,7 +494,7 @@
         explications.push("✖ Mauvaise dynamique récente");
       }
 
-      if (data.experts > 75) {
+      if (data.experts > 65) {
         score += 25;
         explications.push("✔ Consensus élevé des pronostiqueurs");
       }
@@ -521,12 +521,12 @@
       let score = 0;
       let explications = [];
 
-      if (data.odds < 9.98) {
+      if (data.odds < 9.90) {
         score += 25;
         explications.push("✔ Côte faible favorable");
       }
 
-      if (data.odds > 12.21 ) {
+      if (data.odds > 10.20 ) {
         score -= 20;
         explications.push("✖ Côte élevée = risque important");
       }
@@ -536,7 +536,7 @@
         explications.push("✔ Excellente forme récente");
       }
 
-      if (data.form < 40) {
+      if (data.form < 35) {
         score -= 25;
         explications.push("✖ Mauvaise dynamique récente");
       }
