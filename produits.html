@@ -389,7 +389,7 @@
         </div>
 
         <div class="field">
-          <label>Synthède de la presse et Avis des experts (%): Exemple Top 2 sur 15 soit côte supérieure à 85 % </label>
+          <label>Synthède de la presse et avis des experts (%). Soit la moyenne du Classement, exemple: Top 2 sur 15 soit côte supérieure à 85 % </label>
           <input type="number" id="horseExperts" min="0" max="100">
         </div>
 
@@ -523,7 +523,7 @@
       let score = 0;
       let explications = [];
 
-      if (data.odds < 9.90) {
+      if (data.odds < 8.80) {
         score += 25;
         explications.push("✔ Côte faible favorable");
       }
@@ -533,7 +533,7 @@
         explications.push("✖ Côte élevée = risque important");
       }
 
-      if (data.form > 45) {
+      if (data.form > 55) {
         score += 30;
         explications.push("✔ Excellente forme récente");
       }
@@ -548,7 +548,7 @@
         explications.push("✔ Consensus élevé des pronostiqueurs");
       }
 
-      if (data.experts < 55) {
+      if (data.experts < 75) {
         score -= 20;
         explications.push("✖ Faible confiance des experts");
       }
