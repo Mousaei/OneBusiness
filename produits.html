@@ -423,11 +423,11 @@
         <tbody>
           <tr>
             <td>Côte faible (&lt; 1.80)</td>
-            <td>+30 certitude</td>
+            <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Bonne forme (&gt; 65%)</td>
-            <td>+30 certitude</td>
+            <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Consensus élevé (&gt; 65%)</td>
@@ -435,7 +435,7 @@
           </tr>
           <tr>
             <td>Avantage terrain / numéro</td>
-            <td>+15 certitude</td>
+            <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Côte trop élevée (&gt; 3)</td>
@@ -446,7 +446,7 @@
         <tbody>
           <tr>
             <td>Côte faible (&lt; 8.80)</td>
-            <td>+30 certitude</td>
+            <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Bonne forme (&gt; 45%)</td>
@@ -458,11 +458,11 @@
           </tr>
           <tr>
             <td>Pronostic avantageux: Parmis les trois premiers</td>
-            <td>+20 certitude</td>
+            <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Côte trop élevée (&gt; 3)</td>
-            <td>-25 certitude</td>
+            <td>-20 certitude</td>
           </tr>
         </tbody>
       </table>
@@ -500,7 +500,7 @@
       let explications = [];
 
       if (data.odds < 1.8) {
-        score += 30;
+        score += 25;
         explications.push("✔ Côte faible favorable");
       }
 
@@ -510,7 +510,7 @@
       }
 
       if (data.form > 65) {
-        score += 30;
+        score += 25;
         explications.push("✔ Excellente forme récente");
       }
 
@@ -530,7 +530,7 @@
       }
 
       if (data.advantage === 'oui') {
-        score += 20;
+        score += 25;
         explications.push("✔ Avantage stratégique détecté");
       }
 
@@ -547,12 +547,12 @@
       let explications = [];
 
       if (data.odds < 8.80) {
-        score += 30;
+        score += 25;
         explications.push("✔ Côte faible favorable");
       }
 
       if (data.odds > 10.20 ) {
-        score -= 25;
+        score -= 20;
         explications.push("✖ Côte élevée = risque important");
       }
 
@@ -561,7 +561,7 @@
         explications.push("✔ Excellente forme récente");
       }
 
-      if (data.form < 30) {
+      if (data.form < 35) {
         score -= 20;
         explications.push("✖ Mauvaise dynamique récente");
       }
@@ -571,7 +571,7 @@
         explications.push("✔ Consensus élevé des pronostiqueurs");
       }
 
-      if (data.experts < 75) {
+      if (data.experts < 55) {
         score -= 20;
         explications.push("✖ Faible confiance des experts");
       }
