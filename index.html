@@ -6,6 +6,126 @@
   <title>VDMS Consulting — Plateforme B2B e-commerce</title>
   <meta name="description" content="VDMS Consulting — plateforme B2B e-commerce cloud, centralisation des achats, multi-fournisseurs."/>
   <link rel="stylesheet" href="style.css"/>
+   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #222;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #2563eb;
+    }
+
+    .fact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    input[type="range"] {
+      width: 160px;
+    }
+
+    .rule {
+      background: #eff6ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 4px solid #2563eb;
+    }
+
+    button {
+      margin-top: 15px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border: 1px solid #dbeafe;
+    }
+
+    .result-item {
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      background: white;
+      border-left: 5px solid #16a34a;
+    }
+
+    .certainty {
+      font-weight: bold;
+      color: #dc2626;
+    }
+
+    .explanation {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -52,6 +172,82 @@
     <span data-i18n="topbar_msg">Plateforme B2B e-commerce — Solutions cloud & centralisation des achats</span>
     <span class="topbar-tag" data-i18n="topbar_tag">Version bêta 2026</span>
   </div>
+   <div>
+<h1>Système Expert avec Facteur de Certitude</h1>
+
+  <p>
+    Cette application simule un système expert capable de reproduire un raisonnement humain.
+    Chaque fait possède un niveau de confiance (facteur de certitude). Le moteur d'inférence
+    applique ensuite des règles pour proposer des conclusions avec un score de certitude.
+  </p>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Base de Faits</h2>
+
+      <div class="fact">
+        <label>Fièvre</label>
+        <input type="range" id="fievre" min="0" max="100" value="80" />
+        <span id="fievreValue">80%</span>
+      </div>
+
+      <div class="fact">
+        <label>Toux</label>
+        <input type="range" id="toux" min="0" max="100" value="70" />
+        <span id="touxValue">70%</span>
+      </div>
+
+      <div class="fact">
+        <label>Fatigue</label>
+        <input type="range" id="fatigue" min="0" max="100" value="60" />
+        <span id="fatigueValue">60%</span>
+      </div>
+
+      <div class="fact">
+        <label>Perte du goût</label>
+        <input type="range" id="gout" min="0" max="100" value="50" />
+        <span id="goutValue">50%</span>
+      </div>
+
+      <button onclick="executerSystemeExpert()">
+        Lancer le raisonnement
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Base de Règles</h2>
+
+      <div class="rule">
+        SI Fièvre ET Toux ALORS Grippe (CF = 0.8)
+      </div>
+
+      <div class="rule">
+        SI Fièvre ET Fatigue ALORS Infection virale (CF = 0.7)
+      </div>
+
+      <div class="rule">
+        SI Toux ET Perte du goût ALORS COVID-19 (CF = 0.9)
+      </div>
+
+      <div class="rule">
+        SI Fatigue ET Fièvre ET Perte du goût ALORS COVID-19 sévère (CF = 0.95)
+      </div>
+
+      <div class="result" id="resultats">
+        Les conclusions du système expert apparaîtront ici.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <strong>Principe utilisé :</strong>
+    Le moteur applique des règles de production et combine les facteurs de certitude
+    afin de simuler un raisonnement proche d'un expert humain.
+  </div>
+</div>
+
 </div>
 
 <main>
