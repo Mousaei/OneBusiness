@@ -453,7 +453,7 @@
 
         <tbody>
           <tr>
-            <td>Côte faible (&lt; 8)</td>
+            <td>Côte faible (&lt; 10)</td>
             <td>+25 certitude</td>
           </tr>
           <tr>
@@ -469,7 +469,7 @@
             <td>+25 certitude</td>
           </tr>
           <tr>
-            <td>Côte trop élevée (&gt; 10)</td>
+            <td>Côte trop élevée (&gt; 12)</td>
             <td>-20 certitude</td>
           </tr>
         </tbody>
@@ -554,12 +554,12 @@
       let score = 0;
       let explications = [];
 
-      if (data.odds < 8.80) {
+      if (data.odds < 10) {
         score += 25;
         explications.push("✔ Côte faible favorable");
       }
 
-      if (data.odds > 10.20 ) {
+      if (data.odds > 12 ) {
         score -= 20;
         explications.push("✖ Côte élevée = risque important");
       }
