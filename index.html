@@ -356,7 +356,105 @@
     <span data-i18n="footer_legal"></span>
     <span>Dirigeant : <em>Vahid Mousaei</em></span>
   </div>
+  </div>     
 </footer>
 <script src="script.js"></script>
+
+<script>
+    const sliders = document.querySelectorAll('input[type="range"]');
+
+    sliders.forEach(slider => {
+      slider.addEventListener('input', () => {
+        document.getElementById(slider.id + 'Value').textContent = slider.value + '%';
+      });
+    });
+
+    function executerSystemeExpert() {
+      const faits = {
+        fievre: parseInt(document.getElementById('fievre').value) / 100,
+        toux: parseInt(document.getElementById('toux').value) / 100,
+        fatigue: parseInt(document.getElementById('fatigue').value) / 100,
+        gout: parseInt(document.getElementById('gout').value) / 100
+      };
+
+      const regles = [
+        {
+          conclusion: 'Grippe',
+          conditions: ['fievre', 'toux'],
+          certitude: 0.8,
+          description: 'Présence simultanée de fièvre et de toux.'
+        },
+        {
+          conclusion: 'Infection virale',
+          conditions: ['fievre', 'fatigue'],
+          certitude: 0.7,
+          description: 'Association fréquente entre fatigue et fièvre.'
+        },
+        {
+          conclusion: 'COVID-19',
+          conditions: ['toux', 'gout'],
+          certitude: 0.9,
+          description: 'La perte du goût est fortement corrélée au COVID-19.'
+        },
+        {
+          conclusion: 'COVID-19 sévère',
+          conditions: ['fatigue', 'fievre', 'gout'],
+          certitude: 0.95,
+          description: 'Plusieurs symptômes critiques détectés simultanément.'
+        }
+      ];
+
+      const conclusions = [];
+
+      regles.forEach(regle => {
+        const niveauConfiance = Math.min(
+          ...regle.conditions.map(condition => faits[condition])
+        );
+
+        const facteurFinal = niveauConfiance * regle.certitude;
+
+        if (facteurFinal > 0.2) {
+          conclusions.push({
+            conclusion: regle.conclusion,
+            certitude: facteurFinal,
+            explication: regle.description
+          });
+        }
+      });
+
+      conclusions.sort((a, b) => b.certitude - a.certitude);
+
+      afficherResultats(conclusions);
+    }
+
+    function afficherResultats(conclusions) {
+      const zone = document.getElementById('resultats');
+
+      if (conclusions.length === 0) {
+        zone.innerHTML = '<p>Aucune conclusion fiable trouvée.</p>';
+        return;
+      }
+
+      let html = '<h3>Conclusions générées</h3>';
+
+      conclusions.forEach(item => {
+        html += `
+          <div class="result-item">
+            <strong>${item.conclusion}</strong><br>
+            Facteur de certitude :
+            <span class="certainty">
+              ${(item.certitude * 100).toFixed(1)}%
+            </span>
+            <div class="explanation">
+              ${item.explication}
+            </div>
+          </div>
+        `;
+      });
+
+      zone.innerHTML = html;
+    }
+  </script>   
+  
 </body>
 </html>
