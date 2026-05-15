@@ -422,6 +422,10 @@
         </thead>
         <tbody>
           <tr>
+            <td>Système Expert applicable au Football</td>
+            <td>Utilisation des facteurs de certitude</td>
+          </tr>
+          <tr>
             <td>Côte faible (&lt; 1.80)</td>
             <td>+25 certitude</td>
           </tr>
@@ -430,12 +434,16 @@
             <td>+25 certitude</td>
           </tr>
           <tr>
-            <td>Consensus élevé (&gt; 65%)</td>
+            <td>Consensus élevé (&gt; 75%)</td>
             <td>+25 certitude</td>
           </tr>
           <tr>
             <td>Avantage terrain / numéro</td>
             <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Système Expert applicable au Football</td>
+            <td>Utilisation des facteurs de certitude</td>
           </tr>
           <tr>
             <td>Côte trop élevée (&gt; 3)</td>
@@ -453,7 +461,7 @@
             <td>+25 certitude</td>
           </tr>
           <tr>
-            <td>Consensus élevé (&gt; 65%)</td>
+            <td>Consensus élevé (&gt; 75%)</td>
             <td>+25 certitude</td>
           </tr>
           <tr>
@@ -519,12 +527,12 @@
         explications.push("✖ Mauvaise dynamique récente");
       }
 
-      if (data.experts > 65) {
+      if (data.experts > 75) {
         score += 25;
         explications.push("✔ Consensus élevé des pronostiqueurs");
       }
 
-      if (data.experts < 45) {
+      if (data.experts < 55) {
         score -= 20;
         explications.push("✖ Faible confiance des experts");
       }
@@ -556,7 +564,7 @@
         explications.push("✖ Côte élevée = risque important");
       }
 
-      if (data.form > 55) {
+      if (data.form > 45) {
         score += 25;
         explications.push("✔ Excellente forme récente");
       }
