@@ -5,6 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VDMS Consulting — Produits</title>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    p.description {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #cbd5e1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      color: #facc15;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: #1e293b;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .high {
+      background: #16a34a;
+    }
+
+    .medium {
+      background: #ca8a04;
+    }
+
+    .low {
+      background: #dc2626;
+    }
+
+    .rules {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+  </style>
 </head>
 <body>
 <header>
@@ -39,7 +184,168 @@
     </div>
   </div>
 </header>
-<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div>
+ <div>
+  <div class="container">
+    <h1>Système Expert de Pronostics</h1>
+    <p class="description">
+      Application HTML/CSS/JavaScript utilisant un moteur de règles et un facteur de certitude pour analyser des pronostics sportifs et hippiques.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>Analyse Ligue 1</h2>
+
+        <div class="field">
+          <label>Équipe favorite</label>
+          <input type="text" id="team" placeholder="Ex : PSG">
+        </div>
+
+        <div class="field">
+          <label>Côte du bookmaker</label>
+          <input type="number" id="odds" step="0.01" placeholder="Ex : 1.55">
+        </div>
+
+        <div class="field">
+          <label>Forme récente (%) : Nous parlons de forme moyenne, par exemple une Forme Moyenne sur les 5 derniers matchs supérieure à 85 %</label>
+          <input type="number" id="form" min="0" max="100" placeholder="Ex : 78">
+        </div>
+
+        <div class="field">
+          <label>Consensus pronostiqueurs (%) : Nous parlons de consensus moyen des pronostics, par exemple un Consensus Moyen favorabe et supérieure à 85 % </label>
+          <input type="number" id="experts" min="0" max="100" placeholder="Ex : 85">
+        </div>
+
+        <div class="field">
+          <label>Avantage domicile</label>
+          <select id="homeAdvantage">
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+
+        <button onclick="analyserFootball()">Analyser le match</button>
+
+        <div class="result" id="footballResult">
+          En attente d'analyse...
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Analyse Courses Hippiques</h2>
+
+        <div class="field">
+          <label>Nom du cheval</label>
+          <input type="text" id="horse">
+        </div>
+
+        <div class="field">
+          <label>Côte PMU</label>
+          <input type="number" id="horseOdds" step="0.01" placeholder="Ex : 6.55">
+        </div>
+
+        <div class="field">
+          <label>Performance récente (%). Nous parlons de Performance Moyenne, par exemple une Performance  Moyenne sur les 5 dernières courses supérieure à 85 % </label>
+          <input type="number" id="horseForm" min="0" max="100" placeholder="Ex : 75%">
+        </div>
+
+        <div class="field">
+          <label>Synthèse de de la presse et avis des experts (%): Nous parlons, par exmple d'un avis moyen équivalent au Top 2 sur 15. Soit un Avis Favorable supérieure à 85 % </label>
+          <input type="number" id="horseExperts" min="0" max="100" placeholder="Ex : 85%">
+        </div>
+
+        <div class="field">
+          <label>Pronostic avantageux: Parmis les 5 premiers</label>
+          <select id="horseNumberAdvantage">
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+
+        <button onclick="analyserCheval()">Analyser le cheval</button>
+
+        <div class="result" id="horseResult">
+          En attente d'analyse...
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card rules">
+      <h2>Moteur de règles du système expert</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Règle</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Système Expert applicable aux match de Football</td>
+            <td>Utilisation des facteurs de certitude</td>
+          </tr>
+          <tr>
+            <td>Côte faible (&lt; 1.80)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Bonne forme (&gt; 65%)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Consensus élevé (&gt; 75%)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Avantage terrain / numéro</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Système Expert applicable aux courses de Chevaux</td>
+            <td>Utilisation des facteurs de certitude</td>
+          </tr>
+          <tr>
+            <td>Côte trop élevée (&gt; 3)</td>
+            <td>-20 certitude</td>
+          </tr>
+        </tbody>
+
+        <tbody>
+          <tr>
+            <td>Côte faible (&lt; 10)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Bonne forme (&gt; 45%)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Consensus élevé (&gt; 75%)</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Pronostic avantageux: Parmis les 5 premiers</td>
+            <td>+25 certitude</td>
+          </tr>
+          <tr>
+            <td>Côte trop élevée (&gt; 12)</td>
+            <td>-20 certitude</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      Ce système expert fournit une estimation probabiliste basée sur des règles simples et des facteurs de certitude. Il ne garantit aucun gain.
+    </div>
+  </div>
+
+</div>
+
+</div>
 
 <main>
   <section>
