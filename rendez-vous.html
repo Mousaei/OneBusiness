@@ -104,78 +104,7 @@
       </div>
     </div>
 
-    <!-- Formulaire RDV Juridique -->
-    <div class="section-box" style="margin:0;">
-      <h3 style="color:var(--navy);margin-bottom:20px;">⚖️ Réserver une consultation juridique</h3>
-      <form id="form-juridique" onsubmit="envoyerRdv(event,'juridique')">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="j-prenom">Prénom</label>
-            <input type="text" id="j-prenom" placeholder="Jean" required/>
-          </div>
-          <div class="form-group">
-            <label for="j-nom">Nom</label>
-            <input type="text" id="j-nom" placeholder="Dupont" required/>
-          </div>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="j-email">Email professionnel</label>
-            <input type="email" id="j-email" placeholder="jean.dupont@societe.fr" required/>
-          </div>
-          <div class="form-group">
-            <label for="j-tel">Téléphone</label>
-            <input type="tel" id="j-tel" placeholder="+33 6 00 00 00 00"/>
-          </div>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="j-specialite">Domaine juridique</label>
-            <select id="j-specialite">
-              <option value="">-- Choisir un domaine --</option>
-              <option value="contrats">Droit des contrats</option>
-              <option value="rgpd">RGPD & Données personnelles</option>
-              <option value="litiges">Litiges commerciaux</option>
-              <option value="pi">Propriété intellectuelle</option>
-              <option value="social">Droit du travail</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="j-urgence">Niveau d'urgence</label>
-            <select id="j-urgence">
-              <option value="normal">Normal — sous 7 jours</option>
-              <option value="urgent">Urgent — sous 48h</option>
-              <option value="critique">Critique — aujourd'hui</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="j-date">Date souhaitée</label>
-            <input type="date" id="j-date" required/>
-          </div>
-          <div class="form-group">
-            <label for="j-format">Format</label>
-            <select id="j-format">
-              <option value="visio">Visioconférence</option>
-              <option value="tel">Téléphone</option>
-              <option value="cabinet">En cabinet — Paris</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="j-desc">Décrivez votre situation</label>
-          <textarea id="j-desc" rows="3" placeholder="Ex : Révision d'un contrat fournisseur international, désaccord sur une clause de confidentialité..."></textarea>
-        </div>
-        <div id="alert-juridique" class="alert alert-success" style="display:none;">✅ Votre demande de consultation juridique a bien été enregistrée. Un juriste vous contacte sous 24h.</div>
-        <div class="form-actions">
-          <button type="submit" class="btn">Réserver la consultation →</button>
-          <span class="muted text-sm">Première consultation offerte</span>
-        </div>
-      </form>
-    </div>
-  </section>
+    
 
   <!-- ── SECTION 2 : MÉDICAL ─────────────────────────────────── -->
   <section id="medical">
@@ -298,6 +227,79 @@
         <div class="form-actions">
           <button type="submit" class="btn">Confirmer le rendez-vous →</button>
           <span class="muted text-sm">Données médicales 100 % confidentielles</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Formulaire RDV Juridique -->
+    <div class="section-box" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:20px;">⚖️ Réserver une consultation juridique</h3>
+      <form id="form-juridique" onsubmit="envoyerRdv(event,'juridique')">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-prenom">Prénom</label>
+            <input type="text" id="j-prenom" placeholder="Jean" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-nom">Nom</label>
+            <input type="text" id="j-nom" placeholder="Dupont" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-email">Email professionnel</label>
+            <input type="email" id="j-email" placeholder="jean.dupont@societe.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-tel">Téléphone</label>
+            <input type="tel" id="j-tel" placeholder="+33 6 00 00 00 00"/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-specialite">Domaine juridique</label>
+            <select id="j-specialite">
+              <option value="">-- Choisir un domaine --</option>
+              <option value="contrats">Droit des contrats</option>
+              <option value="rgpd">RGPD & Données personnelles</option>
+              <option value="litiges">Litiges commerciaux</option>
+              <option value="pi">Propriété intellectuelle</option>
+              <option value="social">Droit du travail</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="j-urgence">Niveau d'urgence</label>
+            <select id="j-urgence">
+              <option value="normal">Normal — sous 7 jours</option>
+              <option value="urgent">Urgent — sous 48h</option>
+              <option value="critique">Critique — aujourd'hui</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-date">Date souhaitée</label>
+            <input type="date" id="j-date" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-format">Format</label>
+            <select id="j-format">
+              <option value="visio">Visioconférence</option>
+              <option value="tel">Téléphone</option>
+              <option value="cabinet">En cabinet — Paris</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="j-desc">Décrivez votre situation</label>
+          <textarea id="j-desc" rows="3" placeholder="Ex : Révision d'un contrat fournisseur international, désaccord sur une clause de confidentialité..."></textarea>
+        </div>
+        <div id="alert-juridique" class="alert alert-success" style="display:none;">✅ Votre demande de consultation juridique a bien été enregistrée. Un juriste vous contacte sous 24h.</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Réserver la consultation →</button>
+          <span class="muted text-sm">Première consultation offerte</span>
         </div>
       </form>
     </div>
