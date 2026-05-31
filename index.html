@@ -511,7 +511,43 @@
     </p>
 
     <div class="grid">
+ <div class="card">
+        <h2>Analyse Ligue 1</h2>
 
+        <div class="field">
+          <label>Équipe favorite</label>
+          <input type="text" id="team" placeholder="Ex : PSG">
+        </div>
+
+        <div class="field">
+          <label>Côte du bookmaker</label>
+          <input type="number" id="odds" step="0.01" placeholder="Ex : 1.55">
+        </div>
+
+        <div class="field">
+          <label>Forme récente (%) : Nous parlons de forme moyenne, par exemple une Forme Moyenne sur les 5 derniers matchs supérieure à 85 %</label>
+          <input type="number" id="form" min="0" max="100" placeholder="Ex : 85">
+        </div>
+
+        <div class="field">
+          <label>Consensus pronostiqueurs (%) : Nous parlons de consensus moyen des pronostics, par exemple un Consensus Moyen favorabe et supérieure à 85 % </label>
+          <input type="number" id="experts" min="0" max="100" placeholder="Ex : 85">
+        </div>
+
+        <div class="field">
+          <label>Avantage domicile</label>
+          <select id="homeAdvantage">
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+
+        <button onclick="analyserFootball()">Analyser le match</button>
+
+        <div class="result" id="footballResult">
+          En attente d'analyse...
+        </div>
+      </div>
       
       <div class="card">
         <h2>Analyse Courses Hippiques</h2>
@@ -617,43 +653,7 @@
       </table>
     </div>
 
-      <div class="card">
-        <h2>Analyse Ligue 1</h2>
-
-        <div class="field">
-          <label>Équipe favorite</label>
-          <input type="text" id="team" placeholder="Ex : PSG">
-        </div>
-
-        <div class="field">
-          <label>Côte du bookmaker</label>
-          <input type="number" id="odds" step="0.01" placeholder="Ex : 1.55">
-        </div>
-
-        <div class="field">
-          <label>Forme récente (%) : Nous parlons de forme moyenne, par exemple une Forme Moyenne sur les 5 derniers matchs supérieure à 85 %</label>
-          <input type="number" id="form" min="0" max="100" placeholder="Ex : 85">
-        </div>
-
-        <div class="field">
-          <label>Consensus pronostiqueurs (%) : Nous parlons de consensus moyen des pronostics, par exemple un Consensus Moyen favorabe et supérieure à 85 % </label>
-          <input type="number" id="experts" min="0" max="100" placeholder="Ex : 85">
-        </div>
-
-        <div class="field">
-          <label>Avantage domicile</label>
-          <select id="homeAdvantage">
-            <option value="oui">Oui</option>
-            <option value="non">Non</option>
-          </select>
-        </div>
-
-        <button onclick="analyserFootball()">Analyser le match</button>
-
-        <div class="result" id="footballResult">
-          En attente d'analyse...
-        </div>
-      </div>
+     
       
     </div>
 
